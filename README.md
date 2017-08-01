@@ -13,7 +13,7 @@ Features:
 - Prompts user for Pivnet API token
 - Prompts user to save the Pivnet API token for future use
 - Prompts user to accept End User License Agreement
-- Validates MD5 checksum of download
+- Validates checksum of download
 
 ## opsman
 
@@ -32,6 +32,11 @@ $ opsman upload '*.pivotal'
 ```
 
 > Please note the use of quoting to prevent pre-mature shell expansion of the wildcard!
+
+You can also upload stemcells:
+```
+$ opsman stemcell bosh-stemcell-3363.24-vsphere-esxi-ubuntu-trusty-go_agent.tgz
+```
 
 Features:
 - Prompts user for Ops Manager credentials if necessary
@@ -60,7 +65,7 @@ $ boshctl start
 Features:
 - Prompts user for Ops Manager credentials if necessary
 
-## azure-om-deploy
+## install-scripts/azure-om-deploy
 
 This script automates the "Launching an Ops Manager Director Instance on Azure"
 instructions found at: http://docs.pivotal.io/pivotalcf/1-8/customizing/azure-om-deploy.html
