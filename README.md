@@ -10,8 +10,8 @@ $ pivnet download https://network.pivotal.io/api/v2/products/elastic-runtime/rel
 ```
 
 Features:
-- Prompts user for Pivnet API token
-- Prompts user to save the Pivnet API token for future use
+- Prompts user for Pivnet Refresh token
+- Prompts user to save the Pivnet Refresh token for future use
 - Prompts user to accept End User License Agreement
 - Validates checksum of download
 
@@ -35,7 +35,12 @@ $ opsman upload '*.pivotal'
 
 You can also upload stemcells:
 ```
-$ opsman stemcell bosh-stemcell-3363.24-vsphere-esxi-ubuntu-trusty-go_agent.tgz
+$ opsman upload bosh-stemcell-3363.24-vsphere-esxi-ubuntu-trusty-go_agent.tgz
+```
+
+By default, the script targets Ops Manager running on `localhost` but you can override:
+```
+$ export OPSMAN_HOST=opsman.example.com
 ```
 
 Features:
@@ -45,18 +50,16 @@ Features:
 
 BOSH Control is used to start or stop all your deployments. This script will
 queue the tasks so you can run it and not have to worry about keeping your
-terminal session open.
+terminal session open. **Note: boshctl is supported on versions 2.0 or later of Pivotal Cloud Foundry**
 
 To _login_ to BOSH using Ops Manager credentials (because who can remember the director password, right?)
 ```
 $ boshctl login
 ```
-Once logged in, you can use either the `bosh` or the `bosh2` command line. When using `bosh2` you must specify the `pcf` alias that has been created for the environment. So, either of these commands will work
+Once logged in, an alias titled `pcf` will be created in your environment. You can use the `bosh` command line by specifying the `pcf` environment. To see the VMs deployed in your environment:
+
 ```
-$ bosh vms
-```
-```
-$ bosh2 -e pcf vms
+$ bosh -e pcf vms
 ```
 
 To _stop_ all deployments:
